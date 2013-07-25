@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- 
+    normalize.css removes cross-browser differences in defaults, e.g.,
+    differences in how form elements appear between Firefox and IE
+    See: http://necolas.github.com/normalize.css/
+  -->
+  <link rel="stylesheet" href="/css/normalize.css">
+  <!--
+    application.css is where you put your styles
+  -->
+  <link rel="stylesheet" href="/css/application.css">
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="/js/application.js"></script>
+
+  <title></title>
+</head>
+<body>
+<a href='/'>Home</a>
+<% if logged_in? %>
+<a href='/sessions/end'>Log Out</a>
+<a href="/users/<%= session[:user_id] %>">My Profile</a>
+<% else %>
+<a href='/sessions/new'>Log In</a>
+<% end %>
+  <%= yield %>
+</body>
+</html>
+
+
+<!-- if session[:user_id]
+  show this top navigation
+  -log out button
+  -view profile
+  -home/index -->

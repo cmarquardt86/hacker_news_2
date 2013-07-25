@@ -1,0 +1,9 @@
+<div class="container">
+<!-- <a href="/sessions/new">Log In</a> -->
+<br />
+<ul>
+  <% Post.all.each do |post| %>
+  <li><a href="/posts/<%= post.id %>"><%= post.title %></a></li>
+  <% end %>
+</ul>
+</div>
