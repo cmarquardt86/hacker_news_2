@@ -47,9 +47,26 @@ get "/posts/:id" do |id|
   erb :"posts/show"
 end
 
+
 post "/comments" do
   Comment.create(content: params[:content], user_id: "#{session[:user_id]}", post_id: params[:post_id])
   redirect "/posts/#{params[:post_id]}"
 end
 
+post "/commentvote" do
+  comment = CommentVote.where(:comment_id => params[:comment_id]).first_or_create()
+  comment.num_votes += 1
+  comment.save
+  redirect "/posts/#{params[:post_id]}"
+end
 
+post "/commentdevote" do
+  comment = CommentVote.where(:comment_id => params[:comment_id]).first_or_create()
+  comment.num_votes -= 1
+  comment.save
+  redirect "/posts/#{params[:post_id]}"
+end
+
+# click button, goes to route
+# increment/decrement
+# redirect/erb
